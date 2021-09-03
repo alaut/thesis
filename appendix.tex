@@ -19,22 +19,23 @@ From ampere's law:
 
 $$\nabla \times \vec{E} = -\frac{\partial B}{\partial t} \to \oint \vec{E}\cdot d\vec{l} = -\frac{\partial}{\partial t}\iint_S\vec{B}\cdot d\vec{A}$$
 
-and by defining the following integration path/surface through a round charge distribution:
+When defining the following integration path/surface through a round charge distribution:
 
 $$\begin{aligned}
         \oint \vec{E}\cdot d\vec{l} = E_z(r,z)\Delta z + \int_r^bE_r(r', z+\Delta z)dr'-E_z(b, z)\Delta z -\int_r^bE_r(r', z)dr'
     \end{aligned}$$
 
-and:
+Because:
 
 $$\begin{aligned}
         -\frac{\partial}{\partial t}\iint_S\vec{B}\cdot d\vec{A} = -\Delta z \frac{\partial}{\partial t}\int_r^bB_{\theta}(r', z)
     \end{aligned}$$
-Using:
+
+And that:
 
 $$E_r(r', z+\Delta z)-E_r(r', z) = \frac{\partial E_r(r', z)}{\partial z}\Delta z$$
 
-Since $dz = -vdt$:
+From $dz = -vdt$ we can make the following substitutions:
 
 $$\begin{aligned}
         E_z(r,z)-E_z(b,z) & = -\int_r^b\left[\frac{\partial E_r(r', z)}{\partial z}+\frac{\partial B_{\theta}(r', z)}{\partial t}\right]dr' \\
@@ -46,9 +47,9 @@ Therefore:
 
 $$E_z(r,z) = E_z(b,z)-(1-\beta^2)\frac{\partial}{\partial z}\int_r^bE_r(r',z)dr'$$
 
-The longitudinal self fields  for a beam in a conductive pipe of radius \textbf{b} are:
+For a conducting pipe, $E_z(b,z)=0$ and so the longitudinal self fields are given by:
 
-$$\boxed{E_z(r, z) = -\frac{1}{\gamma^2}\frac{\partial}{\partial z}\int_r^bE_r(r', z)dr'}$$
+$$E_z(r, z) = -\frac{1}{\gamma^2}\frac{\partial}{\partial z}\int_r^bE_r(r', z)dr'$$
 
 \subsection{Radial Fields in Cylindrical Bunches}
 
@@ -63,7 +64,7 @@ $$Q = \lambda(z) \Delta z$$
 
 \end{figure}
 
-We can define $f(r)$, the proportion of charge enclosed in a cylindrical area of radius $r$ can given by the radial charge density $\rho(r)$:
+We can define \textit{form factor} $f(r)$, the proportion of charge enclosed in a cylindrical area of radius $r$ given by the radial charge density $\rho(r)$:
 
 $$f(r) =  \frac{\int_0^r \rho(r') r' dr'}{\int_0^\infty \rho(r') r' dr'} = \frac{Q_{enc}}{Q}$$
 
@@ -75,11 +76,11 @@ From an gaussian cylinder of length $\Delta z$ and radius $r$, we deduce from:
 
 $$\nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \rightarrow \int_S \vec{E}\cdot d\vec{A} = \frac{Q_{enc}}{\epsilon_0}$$
 
-That:
+Such that:
 
 $$\vec{E_r}(r) \cdot 2\pi r \Delta z = \frac{f(r) \lambda(z)\Delta z}{\epsilon_0}$$
 
-The longitudinal self fields for a \textbf{round beam} in a conductive pipe of radius \textbf{b} is given by:
+The longitudinal self fields for a round beam in a conductive pipe of radius \textbf{b} is given by:
 
 $$E_z(r, z) = -\frac{1}{\gamma^2}\frac{\partial}{\partial z}\int_r^bE_r(r', z)dr'$$
 
@@ -87,24 +88,14 @@ The radial fields for a slowly varying \textbf{coasting beam} are:
 
 $$E_r(r, z) = \frac{\lambda(z)}{2\pi\epsilon_0}\frac{f(r)}{r}$$
 
-Accordingly our longitudinal fields are defined by:
+Accordingly our longitudinal fields can be defined by:
 
 \begin{equation}
     E_z = -\frac{\bar{g}}{2\pi\epsilon_0\gamma^2}\frac{\partial \lambda}{\partial z}
     \label{eq:longitudinal_self_fields}
 \end{equation}
 
-Where the \textbf{geometry factor} $\bar{g}$ is defined by:
-
-$$\bar{g} = \int_r^b\frac{f(r')}{r'}dr' \qquad$$
-
-Where we have also defined a \textbf{form factor} $f$ expression the ratio of the charge enclosed within $r$ to that of the total charge:
-
-\[f(r)= \frac{\int_0^r\rho(r')r'dr'}{\int_0^\infty \rho(r')r'dr'}=\frac{Q_{enc}}{Q}\]
-
 \section{Round Beam Profiles}
-
-We will go through the generalized workflow to derive the geometry for profiles other than just uniform gaussian beams\cite{baartman_form_2015}:
 
 \subsection{Uniform Round Beam}
 
@@ -235,24 +226,24 @@ and the Euler–Mascheroni constant is given by:
 
 $$\gamma = \lim_{n\to\infty}\left(-\ln n +\sum_{k=1}^n\frac{1}{k}\right) \approx 0.57721$$
 
-Similar to the expression for a truncated bi-Gaussian \cite{ng_physics_2006},\cite{ng_space-charge_2004}:
+Equation \ref{eq:g_gaussian} includes further accuracy to the expression for a truncated bi-Gaussian \cite{ng_physics_2006},\cite{ng_space-charge_2004} as defined below:
 
 $$g(r<m\sigma_r) = \frac{\gamma+2\ln\frac{b}{\sigma_r\sqrt{2}}+E_1(\frac{m^2}{2})}{1-\exp(-m^2/2)}$$
 
 \chapter{Möller–Trumbore Intersection Algorithm}
 
-This easily parallelizable algorithm can efficiently detect and compute the intersections of a ray $q=(q_0, q_1)$ through a face $p=(p_0, p_1, p_2)$. The interaction between a ray and a face can be characterized as \textbf{intersecting} and \textbf{non-intersecting}:
+This easily parallelized algorithm can efficiently detect and compute the intersections of a ray $q=(q_0, q_1)$ through a face $p=(p_0, p_1, p_2)$. The interaction between a ray and a face can be characterized as \textbf{intersecting} and \textbf{non-intersecting}:
 
 \begin{figure}
     \centering
     \includegraphics{figs/moller_trumbore.drawio.png}
 \end{figure}
 
-And intersection exists if:
+An intersection exists if:
 
 $$s_1 \neq s_2 \quad \& \quad s_3 = s_4 \quad \& \quad s_4 = s_5 $$
 
-Where:
+Where for brevity we define:
 
 $$\begin{aligned}
     s_1 = \text{sign}(V(q_1, p_1, p_2, p_3))\\
@@ -272,7 +263,7 @@ The intersection point $q_0$ is then given by:
 
 $$q_0 = q_1 + t (q_2-q_1)$$
 
-Where:
+Where the parameter ($t$) and normal ($n$) are given by:
 
 $$t = \frac{(p_1-q_1) \cdot n}{(q_2-q_1) \cdot n} \qquad n = (p_2-p_1) \times (p_3-p_1)$$
 
