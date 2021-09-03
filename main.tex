@@ -1,0 +1,41 @@
+\documentclass[a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+% \usepackage[margin=2.5cm]{geometry}
+
+\usepackage{csquotes}
+
+% \usepackage{fancyhdr}
+% \pagestyle{fancy}
+
+\usepackage{graphicx}
+\setkeys{Gin}{width=0.8\linewidth}
+
+\usepackage{float}
+\floatplacement{figure}{H}
+\floatplacement{table}{H}
+
+\usepackage[style=phys]{biblatex} % https://www.overleaf.com/learn/latex/Biblatex_citation_styles
+\addbibresource{library.bib}
+
+\usepackage[colorlinks]{hyperref}
+
+\setlength\parindent{0pt}
+\setlength{\parskip}{10pt}
+
+% ----- CONTENT ----- %
+
+\begin{document}
+
+% \include{title}
+
+\tableofcontents
+% \listoffigures
+% \listoftables
+
+\include{body}
+\include{appendix}
+
+\printbibliography
+
+\end{document}

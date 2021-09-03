@@ -1,0 +1,330 @@
+\appendix
+
+\chapter{Space Charge Geometry Factors}
+
+\section{Fields of Round Beams}
+
+\subsection{Longitudinal Fields in a Conducting Cylinder}
+
+Consider a uniform round beam:
+
+\begin{figure}
+    \centering
+    \includegraphics{figs/amperian_surface.png}
+    \caption{Field Schematic of Coasting Beam}
+
+\end{figure}
+
+From ampere's law:
+
+$$\nabla \times \vec{E} = -\frac{\partial B}{\partial t} \to \oint \vec{E}\cdot d\vec{l} = -\frac{\partial}{\partial t}\iint_S\vec{B}\cdot d\vec{A}$$
+
+and by defining the following integration path/surface through a round charge distribution:
+
+$$\begin{aligned}
+        \oint \vec{E}\cdot d\vec{l} = E_z(r,z)\Delta z + \int_r^bE_r(r', z+\Delta z)dr'-E_z(b, z)\Delta z -\int_r^bE_r(r', z)dr'
+    \end{aligned}$$
+
+and:
+
+$$\begin{aligned}
+        -\frac{\partial}{\partial t}\iint_S\vec{B}\cdot d\vec{A} = -\Delta z \frac{\partial}{\partial t}\int_r^bB_{\theta}(r', z)
+    \end{aligned}$$
+Using:
+
+$$E_r(r', z+\Delta z)-E_r(r', z) = \frac{\partial E_r(r', z)}{\partial z}\Delta z$$
+
+Since $dz = -vdt$:
+
+$$\begin{aligned}
+        E_z(r,z)-E_z(b,z) & = -\int_r^b\left[\frac{\partial E_r(r', z)}{\partial z}+\frac{\partial B_{\theta}(r', z)}{\partial t}\right]dr' \\
+                          & =-\frac{\partial}{\partial z}\int_r^b[E_r(r',z)-vB_{\theta}(r',z)]dr'                                           \\
+                          & =-\frac{\partial}{\partial z}\int_r^b[E_r(r',z)-\beta^2E_r(r',z)]dr'
+    \end{aligned}$$
+
+Therefore:
+
+$$E_z(r,z) = E_z(b,z)-(1-\beta^2)\frac{\partial}{\partial z}\int_r^bE_r(r',z)dr'$$
+
+The longitudinal self fields  for a beam in a conductive pipe of radius \textbf{b} are:
+
+$$\boxed{E_z(r, z) = -\frac{1}{\gamma^2}\frac{\partial}{\partial z}\int_r^bE_r(r', z)dr'}$$
+
+\subsection{Radial Fields in Cylindrical Bunches}
+
+Considering a cylindrical bunch defined by it's linear charge density $\lambda(z)$, a gaussian element of length $\Delta z$ located at $z$ is defined by:
+
+$$Q = \lambda(z) \Delta z$$
+
+\begin{figure}
+    \centering
+    \includegraphics{./figs/gaussian_cylindrical_bunch.png}
+    \caption{Integration Surfaces to Compute Radial Fields in Cylindrical Beam}
+
+\end{figure}
+
+We can define $f(r)$, the proportion of charge enclosed in a cylindrical area of radius $r$ can given by the radial charge density $\rho(r)$:
+
+$$f(r) =  \frac{\int_0^r \rho(r') r' dr'}{\int_0^\infty \rho(r') r' dr'} = \frac{Q_{enc}}{Q}$$
+
+Therefore:
+
+$$Q_{enc} = f(r) Q = f(r)\lambda(z) \Delta z$$
+
+From an gaussian cylinder of length $\Delta z$ and radius $r$, we deduce from:
+
+$$\nabla \cdot \vec{E} = \frac{\rho}{\epsilon_0} \rightarrow \int_S \vec{E}\cdot d\vec{A} = \frac{Q_{enc}}{\epsilon_0}$$
+
+That:
+
+$$\vec{E_r}(r) \cdot 2\pi r \Delta z = \frac{f(r) \lambda(z)\Delta z}{\epsilon_0}$$
+
+The longitudinal self fields for a \textbf{round beam} in a conductive pipe of radius \textbf{b} is given by:
+
+$$E_z(r, z) = -\frac{1}{\gamma^2}\frac{\partial}{\partial z}\int_r^bE_r(r', z)dr'$$
+
+The radial fields for a slowly varying \textbf{coasting beam} are:
+
+$$E_r(r, z) = \frac{\lambda(z)}{2\pi\epsilon_0}\frac{f(r)}{r}$$
+
+Accordingly our longitudinal fields are defined by:
+
+\begin{equation}
+    E_z = -\frac{\bar{g}}{2\pi\epsilon_0\gamma^2}\frac{\partial \lambda}{\partial z}
+    \label{eq:longitudinal_self_fields}
+\end{equation}
+
+Where the \textbf{geometry factor} $\bar{g}$ is defined by:
+
+$$\bar{g} = \int_r^b\frac{f(r')}{r'}dr' \qquad$$
+
+Where we have also defined a \textbf{form factor} $f$ expression the ratio of the charge enclosed within $r$ to that of the total charge:
+
+\[f(r)= \frac{\int_0^r\rho(r')r'dr'}{\int_0^\infty \rho(r')r'dr'}=\frac{Q_{enc}}{Q}\]
+
+\section{Round Beam Profiles}
+
+We will go through the generalized workflow to derive the geometry for profiles other than just uniform gaussian beams\cite{baartman_form_2015}:
+
+\subsection{Uniform Round Beam}
+
+A uniform charge distribution in a cylindrical beam is defined by constant surface charge density:
+
+
+$$\rho(r) = \sigma = \frac{Q}{\pi a^2}$$
+
+Our form factor is therefore:
+
+\[f(r) = \begin{cases}
+        \frac{r^2}{a^2} & r < a \\
+        1               & r < a
+    \end{cases}\]
+
+Therefore our radial fields are defined by:
+
+\[E_r(r,z) = \begin{cases}
+        \frac{\lambda(z)}{2\pi\epsilon_0}\frac{r}{a^2} & r < a \\
+        \frac{\lambda(z)}{2\pi\epsilon_0}\frac{1}{r}   & r > a
+    \end{cases}\]
+
+Our geometric factors are therefore given by:
+
+$$\begin{aligned}
+        g(r<a) & = \int_r^a \frac{r'}{a^2}dr'+\int_a^b\frac{1}{r'}dr'                      \\
+               & = \frac{1}{2}\frac{r'^2}{a^2}\Big|_r^a + \ln(r')\Big|^b_a                 \\
+               & =  \frac{1}{2} - \frac{1}{2}\frac{r^2}{a^2} + \ln\left(\frac{b}{a}\right) \\
+    \end{aligned}$$
+
+and\cite{zotter_impedances_1998}:
+
+$$g(r>a) = \int_r^b\frac{1}{r'}dr' = \ln\left(\frac{b}{r}\right)$$
+
+\begin{equation}
+    g(r) = \begin{cases}
+        \frac{1}{2}-\frac{1}{2}\frac{r^2}{a^2}+\ln(\frac{b}{a}) & r < a \\
+        \ln(\frac{b}{r})                                        & r > a
+    \end{cases}
+    \label{eq:g_uniform}
+\end{equation}
+
+\subsection{Parabolic Round Beam}
+
+We can define a radial parabolic charge distribution of width $a$ with the following:
+
+$$\rho(r) = \frac{2Q}{\pi a^2}\left(1-\frac{r^2}{a^2}\right)$$
+
+Accordingly:
+
+$$Q = \int_0^a \rho(r) r dr d\theta$$
+
+We can then define our relative enclosed charge $f(r)$.
+
+For r $<$ a:
+
+$$\begin{aligned}
+        f(r) & = \frac{2\pi}{Q}\int_0^r\rho(r')r'dr'                                           \\
+             & = \frac{4}{a^2}\int_0^rr'(1-\frac{r'^2}{a^2})dr'                                \\
+             & = \frac{4}{a^2}\left(\frac{r'^2}{2}\Big|_0^r -\frac{r'^4}{4a^2}\Big|_0^r\right) \\
+             & = \frac{4}{a^2}\left(\frac{r^2}{2}-\frac{r^4}{4a^2}\right)                      \\
+             & = 2\frac{r^2}{a^2}-\frac{r^4}{a^4}
+    \end{aligned}$$
+
+For r $>$ a:
+
+$$f(r) = 1$$
+
+Therefore our geometric factor is defined by:
+
+$$\begin{aligned}
+        g(r<a) & = \int_r^a \frac{1}{r'}\left(2\frac{r'^2}{a^2}-\frac{r'^4}{a^4}\right)dr'+ \int_a^b\frac{dr'}{r'} \\
+               & =\frac{r'^2}{a^2}\Big|_r^a-\frac{r'^4}{4a^4}\Big|_r^a + \ln\left(r'\right)\Big|_a^b               \\
+               & = \ln\left(\frac{b}{a}\right) + \frac{a^2-r^2}{a^2} - \frac{a^4-r^4}{4a^4}
+    \end{aligned}$$
+
+and:
+
+$$g(r>a) = \int_r^b\frac{1}{r'}dr' = \ln\left(\frac{b}{r}\right)$$
+
+In summary:
+
+\begin{equation}
+    g(r) = \begin{cases}
+        \ln\left(\frac{b}{a}\right)+\frac{a^2-r^2}{a^2}-\frac{a^4-r^4}{4a^4} & r < a \\
+        \ln(\frac{b}{a})                                                     & r > a\end{cases}
+    \label{eq:g_parabolic}
+\end{equation}
+\subsection{Gaussian Beam}
+
+Given a radial charge distribution is defined by:
+
+$$\rho(r) = \frac{Q}{\sigma_r^2(\sqrt{2\pi})^2}\exp\left(-\frac{r^2}{2\sigma_r^2}\right)$$
+
+Therefore our form factor $f(r)$:
+
+$$f(r) = \frac{\int_0^r\rho(r')r'dr}{\int_0^\infty \rho(r')r'dr} = \frac{1}{2\pi}\int_0^r r'\exp\left(-\frac{r'^2}{2\sigma_r^2}\right)dr' = 1-\exp\left(-\frac{r^2}{2\sigma_r^2}\right)$$
+
+Therefore:
+
+$$\begin{aligned}
+        g(r) & = \int_r^b\frac{1}{r'}\left(1-\exp\left(-\frac{r'^2}{2\sigma_r^2}\right)\right)dr'                                            \\
+             & =\int_r^b\frac{dr'}{r'} -\int_r^b\frac{1}{r'}\exp\left(-\frac{r^2}{2\sigma_r^2}\right)dr'                                     \\
+             & = \ln(r')\Big|_r^b -\frac{1}{2}\text{Ei}\left(-\frac{r'^2}{2\sigma_r^2}\right)\Big|_r^b                                       \\
+             & = \ln\left(\frac{b}{r}\right)-\frac{1}{2}\left(\text{Ei}(-\frac{b^2}{2\sigma_r^2})-\text{Ei}(-\frac{r^2}{2\sigma_r^2})\right)
+    \end{aligned}$$
+
+Or more concisely:
+
+\begin{equation}
+    g(r) = \ln\frac{b}{r} + \frac{1}{2}\left(\rm{Ei}(-\frac{1}{2}\frac{r^2}{\sigma_r^2})-\rm{Ei}(-\frac{1}{2}\frac{b^2}{\sigma_r^2})\right)
+    \label{eq:g_gaussian}
+\end{equation}
+
+Where the exponential integral $\text{Ei}$ is defined by \cite{abramowitz_handbook_2013}: % p228
+
+$$\text{Ei}(x) = \int_{-\infty}^x \frac{e^t}{t}dt$$
+
+Our maximum value occurs at:
+
+$$g(0) = \frac{1}{2}\left(\ln\left(\frac{b^2}{2\sigma_r^2}\right)+\Gamma(0, \frac{b^2}{2\sigma_r^2}+\gamma\right)$$
+
+Where:
+
+$$\Gamma(a, x) = \frac{1}{\Gamma(a)}\int_0^xt^{a-1}e^{-t}dt$$
+
+and the Euler–Mascheroni constant is given by:
+
+$$\gamma = \lim_{n\to\infty}\left(-\ln n +\sum_{k=1}^n\frac{1}{k}\right) \approx 0.57721$$
+
+Similar to the expression for a truncated bi-Gaussian \cite{ng_physics_2006},\cite{ng_space-charge_2004}:
+
+$$g(r<m\sigma_r) = \frac{\gamma+2\ln\frac{b}{\sigma_r\sqrt{2}}+E_1(\frac{m^2}{2})}{1-\exp(-m^2/2)}$$
+
+\chapter{Möller–Trumbore Intersection Algorithm}
+
+This easily parallelizable algorithm can efficiently detect and compute the intersections of a ray $q=(q_0, q_1)$ through a face $p=(p_0, p_1, p_2)$. The interaction between a ray and a face can be characterized as \textbf{intersecting} and \textbf{non-intersecting}:
+
+\begin{figure}
+    \centering
+    \includegraphics{figs/moller_trumbore.drawio.png}
+\end{figure}
+
+And intersection exists if:
+
+$$s_1 \neq s_2 \quad \& \quad s_3 = s_4 \quad \& \quad s_4 = s_5 $$
+
+Where:
+
+$$\begin{aligned}
+    s_1 = \text{sign}(V(q_1, p_1, p_2, p_3))\\
+    s_2 = \text{sign}(V(q_2, p_1, p_2, p_3))\\
+    \\
+    s_3 = \text{sign}(V(q_1, q_2, p_1, p_2))\\
+    s_4 = \text{sign}(V(q_1, q_2, p_2, p_3))\\
+    s_5 = \text{sign}(V(q_1, q_2, p_3, p_1))\\
+\end{aligned}$$
+
+
+And the volume of a tetrahedron is defined by:
+
+$$V(a, b, c, d) = \frac{1}{6} \left((d-a) \cdot ((b-a) \times (c-a))\right)$$
+
+The intersection point $q_0$ is then given by:
+
+$$q_0 = q_1 + t (q_2-q_1)$$
+
+Where:
+
+$$t = \frac{(p_1-q_1) \cdot n}{(q_2-q_1) \cdot n} \qquad n = (p_2-p_1) \times (p_3-p_1)$$
+
+% \chapter{Expressions for Phase Advance in the PS}
+
+% Suppose we can approximate our optics $\beta_m$ about a ring's polar position $s = R\theta$ by complex Fourier coefficients $\beta_k$:
+
+% $$\beta_m = \sum_{k=0}^{n-1}\beta_k\exp(2\pi i \frac{m k}{n}) \to \beta(\theta) \approx \beta_0 + \sum_{k=1}^{n-1}|\beta_k|\cos(k\theta+\varphi_k)$$
+
+% where:
+
+% $$s_m = \frac{m}{n}\mathcal{C} \qquad s = R\theta$$
+
+% \section{First Order Approximation}
+
+% Approximating such that:
+
+% $$\beta(s) \approx |\beta_0| \qquad D(s) = |D_0|$$
+
+% Our phase advance is simply:
+
+% $$\mu(s) = \frac{s}{|\beta_0|}$$
+
+% Our trajectories are therefore:
+
+% $$\begin{aligned}
+%         x(s) & \approx \sqrt{|\beta_{0,x}|\epsilon_x}\cos(\frac{s}{|\beta_{0,x}|}+\mu_{0,x})+|D_{0,x}| \delta \\
+%         y(s) & \approx \sqrt{|\beta_{0,y}|\epsilon_y}\cos(\frac{s}{|\beta_{0,y}|}+\mu_{0,y})
+%     \end{aligned}$$
+
+% We may notice for the \textbf{PS} that $\beta_{0,x} \approx \beta_{0,y}$
+
+% Our matched transverse gaussian bunch may be generated using the covariance matrix $\Sigma = \epsilon \Omega$ where:
+
+% $$\Omega = \begin{pmatrix}\beta & -\alpha\\-\alpha & \gamma\end{pmatrix} \qquad \alpha = -\frac{\beta'}{2} \qquad \gamma = \frac{1+\alpha^2}{\beta}$$
+
+% \section{Second Order Approximation}
+
+% Consider we take the first coefficient $k=0$ and the next most significant mode $k$ to describe our oscillations such that:
+
+% $$\begin{aligned}
+%         \beta(s=R\theta) & \approx \beta_0 + |\beta_k|\cos(k\theta+\varphi_k) \\
+%         D(s=R\theta)     & \approx D_0 + |D_k|\cos(k\theta + \varphi_k)
+%     \end{aligned}$$
+
+% For the \textbf{PS}, we observe a symmetry such that:
+
+% $$\beta_x(\theta) \approx \beta_y(\theta+\frac{\pi}{k})$$
+
+% And so our phase advance can be computed analytically, allowing us to apply a "kick" to the phase-advance tracked in longitudinal tracking codes:
+
+% $$\mu(s) =\int_0^{s}\frac{ds'}{\beta(s)} \to \mu(\theta) = \int_{\theta_0}^{\theta}\frac{Rd\theta}{\beta_0+|\beta_k|\cos(k\theta+\varphi_k)}
+%     =$$
+
+% $$\boxed{\mu(\theta) \approx -\frac{2R}{k\sqrt{|\beta_k|^2-\beta_0^2}}\tanh^{-1}\left(\frac{(|\beta_k|-\beta_0)\tan(\frac{1}{2}(k\theta+\varphi_k))}{\sqrt{|\beta_k|^2-\beta_0^2}}\right)}$$
