@@ -1213,9 +1213,7 @@ spread can be interpreted as follows
 
 $$\sigma_\phi = h \omega \sigma_\tau$$
 
-$$\sigma_w =\sqrt{
-% \frac{q V_g}{(\abs(\kappa) \pi h)(1-\cos(\sigma_\phi))}
-}$$
+$$\sigma_w =\sqrt{\frac{q V_g}{(|\kappa|\pi h)(1-\cos(\sigma_\phi))}}$$
 
 ### Comparison
 
